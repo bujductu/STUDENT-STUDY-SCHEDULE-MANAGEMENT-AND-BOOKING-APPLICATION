@@ -28,4 +28,60 @@
     <string name="logout_confirm_title">Log out?</string>
     <string name="logout_confirm_message">You will need to sign in again to use the app.</string>
     <string name="action_cancel">Cancel</string>
+
+    <!-- Student management -->
+    <string name="student_management_title">Student Management</string>
+    <string name="hint_search_student">Search by code, name, email or phone</string>
+    <string name="action_add_student">Add student</string>
+    <string name="empty_students">No students found</string>
+    <string name="hint_student_code">Student code</string>
+    <string name="hint_fullname">Full name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_phone">Phone</string>
+    <string name="title_add_student">Add student</string>
+    <string name="title_edit_student">Edit student</string>
+    <string name="error_student_code_required">Please enter a student code</string>
+    <string name="error_fullname_required">Please enter the full name</string>
+    <string name="error_email_invalid">Invalid email address</string>
+    <string name="error_student_code_exists">This student code is already used</string>
+    <string name="error_username_taken">This code is already used as a login username</string>
+    <string name="error_student_not_found">Student not found</string>
+    <string name="student_added">Student added. Login: %1$s / %2$s</string>
+    <string name="student_updated">Student updated</string>
+    <string name="student_deleted">Student deleted</string>
+    <string name="delete_student_title">Delete student?</string>
+    <string name="delete_student_message">This also deletes the student login account and all study schedules of this student.</string>
+    <string name="login_preview">Login: %1$s / %2$s</string>
+    <string name="login_preview_hint">The student code is used as both the login username and password.</string>
+
+    <!-- Subject management -->
+    <string name="subject_management_title">Subject Management</string>
+    <string name="hint_search_subject">Search by code, name or description</string>
+    <string name="action_add_subject">Add subject</string>
+    <string name="empty_subjects">No subjects found</string>
+    <string name="hint_subject_code">Subject code</string>
+    <string name="hint_subject_name">Subject name</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_credits">Credits</string>
+    <string name="title_add_subject">Add subject</string>
+    <string name="title_edit_subject">Edit subject</string>
+    <string name="credits_label">Credits: %1$d</string>
+    <string name="error_subject_code_required">Please enter a subject code</string>
+    <string name="error_subject_name_required">Please enter the subject name</string>
+    <string name="error_subject_code_exists">This subject code is already used</string>
+    <string name="error_credits_invalid">Credits must be a number between 0 and 30</string>
+    <string name="error_subject_not_found">Subject not found</string>
+    <string name="subject_added">Subject added</string>
+    <string name="subject_updated">Subject updated</string>
+    <string name="subject_deleted">Subject deleted</string>
+    <string name="delete_subject_title">Delete subject?</string>
+    <string name="delete_subject_message">This also deletes all study schedules that use this subject.</string>
+
+    <!-- Shared -->
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="error_save_failed">Could not save. Please check the information and try again.</string>
+    <string name="error_delete_failed">Could not delete. Please try again.</string>
+    <string name="cd_edit">Edit</string>
+    <string name="cd_delete">Delete</string>
 </resources>

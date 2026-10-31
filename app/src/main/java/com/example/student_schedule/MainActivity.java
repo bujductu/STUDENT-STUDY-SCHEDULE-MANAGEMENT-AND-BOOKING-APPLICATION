@@ -15,6 +15,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.student_schedule.activities.LoginActivity;
+import com.example.student_schedule.activities.StudentManagementActivity;
+import com.example.student_schedule.activities.SubjectManagementActivity;
 import com.example.student_schedule.databinding.ActivityMainBinding;
 import com.example.student_schedule.utils.SessionManager;
 
@@ -64,8 +66,10 @@ public class MainActivity extends AppCompatActivity {
         binding.btnBooking.setVisibility(studentVisibility);
         binding.btnSchedule.setVisibility(studentVisibility);
 
-        binding.btnStudentManagement.setOnClickListener(view -> showComingSoon());
-        binding.btnSubjectManagement.setOnClickListener(view -> showComingSoon());
+        binding.btnStudentManagement.setOnClickListener(view ->
+                startActivity(new Intent(this, StudentManagementActivity.class)));
+        binding.btnSubjectManagement.setOnClickListener(view ->
+                startActivity(new Intent(this, SubjectManagementActivity.class)));
         binding.btnBooking.setOnClickListener(view -> showComingSoon());
         binding.btnSchedule.setOnClickListener(view -> showComingSoon());
     }

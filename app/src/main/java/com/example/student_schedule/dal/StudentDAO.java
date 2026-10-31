@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.student_schedule.models.Account;
 import com.example.student_schedule.models.Student;
 
 import java.util.ArrayList;
@@ -36,6 +37,39 @@ public class StudentDAO {
         return id;
     }
 
+    /**
+     * Creates the student and its login account in one transaction. The account
+     * always gets the STUDENT role.
+     *
+     * @return the new student id, or {@code -1} if either unique key conflicts.
+     */
+    public long insertWithAccount(Student student, String username, String password) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.beginTransaction();
+        try {
+            ContentValues accountValues = new ContentValues();
+            accountValues.put(DBHelper.COL_ACCOUNT_USERNAME, username);
+            accountValues.put(DBHelper.COL_ACCOUNT_PASSWORD, password);
+            accountValues.put(DBHelper.COL_ACCOUNT_ROLE, Account.ROLE_STUDENT);
+            long accountId = db.insert(DBHelper.TABLE_ACCOUNT, null, accountValues);
+            if (accountId == -1) {
+                return -1;
+            }
+
+            student.setAccountId((int) accountId);
+            long id = db.insert(DBHelper.TABLE_STUDENT, null, toValues(student));
+            if (id == -1) {
+                return -1;
+            }
+            student.setId((int) id);
+
+            db.setTransactionSuccessful();
+            return id;
+        } finally {
+            db.endTransaction();
+        }
+    }
+
     public int update(Student student) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         String where = DBHelper.COL_STUDENT_ID + " = ?";
@@ -48,6 +82,34 @@ public class StudentDAO {
         String where = DBHelper.COL_STUDENT_ID + " = ?";
         String[] args = {String.valueOf(id)};
         return db.delete(DBHelper.TABLE_STUDENT, where, args);
+    }
+
+    /**
+     * Deletes a student, the linked login account and (via cascade) that
+     * student's study schedules.
+     *
+     * @return the number of deleted student rows.
+     */
+    public int deleteWithAccount(int studentId) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.beginTransaction();
+        try {
+            Student student = findById(studentId);
+            if (student == null) {
+                return 0;
+            }
+            String where = DBHelper.COL_STUDENT_ID + " = ?";
+            String[] args = {String.valueOf(studentId)};
+            int rows = db.delete(DBHelper.TABLE_STUDENT, where, args);
+            if (rows > 0 && student.getAccountId() > 0) {
+                db.delete(DBHelper.TABLE_ACCOUNT, DBHelper.COL_ACCOUNT_ID + " = ?",
+                        new String[]{String.valueOf(student.getAccountId())});
+            }
+            db.setTransactionSuccessful();
+            return rows;
+        } finally {
+            db.endTransaction();
+        }
     }
 
     public Student findById(int id) {

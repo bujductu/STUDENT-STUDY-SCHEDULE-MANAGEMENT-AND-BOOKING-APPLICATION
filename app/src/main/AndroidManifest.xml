@@ -29,6 +29,24 @@
             android:exported="false"
             android:theme="@style/Theme.Studentschedule"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".activities.StudentManagementActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.StudentFormActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".activities.SubjectManagementActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.SubjectFormActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
