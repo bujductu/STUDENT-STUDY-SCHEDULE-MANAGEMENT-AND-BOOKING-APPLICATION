@@ -10,7 +10,7 @@ Create a project with the following 4 tables:
 And required functionalities:
 * Login: Implement a login function with two roles: Admin and Student, and provide the corresponding functions for each role.
 * Login Account Storage: Store login account information using SharedPreferences.
-* Data Storage: Store the tables using SQLite or Room Database.
+* Data Storage: Store the tables using SQLite.
 * Student Management: Allow administrators to add, update, delete, search, and view student information.
 * Subject Management: Allow administrators to add, update, delete, search, and view subject information.
 * Study Schedule Management: Allow students to create, update, delete, search, and view their personal study schedules.
@@ -21,5 +21,3 @@ And required functionalities:
 * Notifications: Notify students of upcoming study sessions and schedule changes.
 * Version Control and Collaboration: Work together and manage the project code using GitHub or GitLab.
 * Scoring: The score is based on the time taken to complete the project. The less time a student takes, the higher the score.
-
-

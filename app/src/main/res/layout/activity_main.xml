@@ -1,34 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        android:layout_height="?attr/actionBarSize"
+        app:title="@string/app_name" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <TextView
+                android:id="@+id/txtWelcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                android:textStyle="bold"
+                tools:text="Welcome, admin" />
 
-    <include layout="@layout/content_main" />
+            <TextView
+                android:id="@+id/txtRole"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                tools:text="Administrator" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnStudentManagement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/btn_student_management"
+                android:textAllCaps="false"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubjectManagement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/btn_subject_management"
+                android:textAllCaps="false"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBooking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/btn_book_session"
+                android:textAllCaps="false"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSchedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/btn_my_schedules"
+                android:textAllCaps="false"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
