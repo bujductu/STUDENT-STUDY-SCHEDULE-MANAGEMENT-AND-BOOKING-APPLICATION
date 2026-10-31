@@ -8,7 +8,7 @@ Create a project with the following 4 tables:
 * StudySchedule(id, studentId, subjectId, studyDate, startTime, endTime, location, status)
 
 And required functionalities:
-* Login: Implement a login function with two roles: Admin and Student, and provide the corresponding functions for each role.
+* Login: Implement a login function with two roles: Admin and Student, and provide the corresponding functions for each role. (Demo account: )
 * Login Account Storage: Store login account information using SharedPreferences.
 * Data Storage: Store the tables using SQLite.
 * Student Management: Allow administrators to add, update, delete, search, and view student information.

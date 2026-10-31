@@ -84,4 +84,73 @@
     <string name="error_delete_failed">Could not delete. Please try again.</string>
     <string name="cd_edit">Edit</string>
     <string name="cd_delete">Delete</string>
+    <string name="subject_fallback">Subject #%1$d</string>
+
+    <!-- Booking form -->
+    <string name="title_book_session">Book a study session</string>
+    <string name="title_edit_session">Edit study session</string>
+    <string name="hint_subject">Subject</string>
+    <string name="hint_date">Date</string>
+    <string name="hint_start_time">Start time</string>
+    <string name="hint_end_time">End time</string>
+    <string name="hint_location">Location</string>
+    <string name="title_pick_start_time">Start time</string>
+    <string name="title_pick_end_time">End time</string>
+    <string name="status_label">Status: %1$s</string>
+    <string name="error_no_subjects">No subjects available. Ask the administrator to add subjects.</string>
+    <string name="error_subject_required">Please choose a subject</string>
+    <string name="error_date_required">Please choose a date</string>
+    <string name="error_start_required">Please choose a start time</string>
+    <string name="error_end_required">Please choose an end time</string>
+    <string name="error_location_required">Please enter a location</string>
+    <string name="error_end_before_start">End time must be after the start time</string>
+    <string name="error_date_in_past">The study date cannot be in the past</string>
+    <string name="error_start_in_past">The start time must be in the future</string>
+    <string name="error_time_conflict">This time overlaps another study session on that date.</string>
+    <string name="error_schedule_not_found">Study session not found</string>
+    <string name="study_session_booked">Study session booked</string>
+    <string name="study_session_updated">Study session updated</string>
+
+    <!-- Schedule list -->
+    <string name="schedule_list_title">My Schedules</string>
+    <string name="hint_search_schedule">Search by subject or location</string>
+    <string name="action_book_session">Book session</string>
+    <string name="empty_schedules">No study sessions yet</string>
+    <string name="empty_schedules_filtered">No study sessions match this filter</string>
+    <string name="filter_all">All</string>
+    <string name="status_pending">Pending</string>
+    <string name="status_confirmed">Confirmed</string>
+    <string name="status_cancelled">Cancelled</string>
+    <string name="status_dialog_title">Change status</string>
+    <string name="status_changed">Status changed to %1$s</string>
+    <string name="delete_schedule_title">Delete study session?</string>
+    <string name="delete_schedule_message">This removes the session and its reminder.</string>
+    <string name="schedule_deleted">Study session deleted</string>
+    <string name="cd_change_status">Change status</string>
+    <string name="schedule_time_range">%1$s – %2$s</string>
+
+    <!-- Calendar -->
+    <string name="btn_calendar">Calendar</string>
+    <string name="calendar_title">Calendar</string>
+    <string name="calendar_mode_day">Day</string>
+    <string name="calendar_mode_week">Week</string>
+    <string name="calendar_mode_month">Month</string>
+    <string name="cd_previous_period">Previous period</string>
+    <string name="cd_next_period">Next period</string>
+    <string name="calendar_week_period">%1$s – %2$s</string>
+    <string name="empty_day_schedules">No study sessions on this day</string>
+    <string name="weekday_mon">Mon</string>
+    <string name="weekday_tue">Tue</string>
+    <string name="weekday_wed">Wed</string>
+    <string name="weekday_thu">Thu</string>
+    <string name="weekday_fri">Fri</string>
+    <string name="weekday_sat">Sat</string>
+    <string name="weekday_sun">Sun</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_study_reminders">Study reminders</string>
+    <string name="notification_reminder_title">Upcoming study session</string>
+    <string name="notification_reminder_text">%1$s at %2$s in %3$s</string>
+    <string name="notification_changed_title">Study schedule</string>
+    <string name="notification_changed_text">%1$s · %2$s on %3$s</string>
 </resources>

@@ -1,20 +1,28 @@
 package com.example.student_schedule;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.student_schedule.activities.BookingFormActivity;
+import com.example.student_schedule.activities.CalendarActivity;
 import com.example.student_schedule.activities.LoginActivity;
+import com.example.student_schedule.activities.ScheduleListActivity;
 import com.example.student_schedule.activities.StudentManagementActivity;
 import com.example.student_schedule.activities.SubjectManagementActivity;
 import com.example.student_schedule.databinding.ActivityMainBinding;
@@ -22,12 +30,19 @@ import com.example.student_schedule.utils.SessionManager;
 
 /**
  * Role-aware dashboard shown after login. Administrators get the student and
- * subject management entries; students get booking and schedule entries.
+ * subject management entries; students get booking, schedule and calendar
+ * entries.
  */
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private SessionManager session;
+
+    private final ActivityResultLauncher<String> notificationPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(),
+                    granted -> {
+                        // The app keeps working without notifications.
+                    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,17 +80,33 @@ public class MainActivity extends AppCompatActivity {
         binding.btnSubjectManagement.setVisibility(adminVisibility);
         binding.btnBooking.setVisibility(studentVisibility);
         binding.btnSchedule.setVisibility(studentVisibility);
+        binding.btnCalendar.setVisibility(studentVisibility);
 
         binding.btnStudentManagement.setOnClickListener(view ->
                 startActivity(new Intent(this, StudentManagementActivity.class)));
         binding.btnSubjectManagement.setOnClickListener(view ->
                 startActivity(new Intent(this, SubjectManagementActivity.class)));
-        binding.btnBooking.setOnClickListener(view -> showComingSoon());
-        binding.btnSchedule.setOnClickListener(view -> showComingSoon());
+        binding.btnBooking.setOnClickListener(view ->
+                startActivity(new Intent(this, BookingFormActivity.class)));
+        binding.btnSchedule.setOnClickListener(view ->
+                startActivity(new Intent(this, ScheduleListActivity.class)));
+        binding.btnCalendar.setOnClickListener(view ->
+                startActivity(new Intent(this, CalendarActivity.class)));
+
+        if (session.isStudent()) {
+            requestNotificationPermission();
+        }
     }
 
-    private void showComingSoon() {
-        Toast.makeText(this, R.string.coming_soon, Toast.LENGTH_SHORT).show();
+    private void requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            return;
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                == PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
     }
 
     @Override

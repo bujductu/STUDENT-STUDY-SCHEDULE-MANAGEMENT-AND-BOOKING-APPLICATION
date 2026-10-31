@@ -148,6 +148,21 @@ public class StudyScheduleDAO {
         }
     }
 
+    /**
+     * Returns every non-cancelled session dated on or after {@code fromDate}
+     * (inclusive, {@code yyyy-MM-dd}), across all students. Used to restore
+     * reminder alarms after a reboot.
+     */
+    public List<StudySchedule> getAllFromDate(String fromDate) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String sql = SELECT_WITH_SUBJECT + "WHERE s." + DBHelper.COL_STUDY_DATE
+                + " >= ? AND s." + DBHelper.COL_STATUS + " <> ?" + ORDER_BY;
+        try (Cursor cursor = db.rawQuery(sql, new String[]{
+                fromDate, StudySchedule.STATUS_CANCELLED})) {
+            return readAll(cursor);
+        }
+    }
+
     public int updateStatus(int id, String status) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
